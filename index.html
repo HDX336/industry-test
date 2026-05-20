@@ -123,8 +123,12 @@
         <div class="qr-amount">¥9.9</div>
         <div class="qr-hint">长按识别二维码 · 转账备注「行业测试」</div>
       </div>
-      <button class="btn btn-success" onclick="unlockResult()">✅ 我已付款 · 立即查看结果</button>
-      <p style="font-size:12px;color:var(--text-dim);margin-top:12px">付款后直接点击上方按钮解锁</p>
+      <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(79,110,247,.2)">
+        <p style="font-size:14px;color:var(--accent);margin-bottom:12px">🔑 付款后请输入验证码解锁结果</p>
+        <input type="text" id="verify-code" placeholder="请输入验证码" style="width:100%;padding:14px 16px;border:2px solid rgba(79,110,247,.3);border-radius:10px;background:rgba(10,14,39,.8);color:var(--text);font-size:15px;outline:none;text-align:center;letter-spacing:4px;margin-bottom:12px" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='rgba(79,110,247,.3)'">
+        <div id="verify-error" style="color:#ef4444;font-size:13px;margin-bottom:10px;display:none">验证码错误，请确认后重试</div>
+        <button class="btn btn-success" onclick="verifyAndUnlock()">🔓 验证并查看结果</button>
+      </div>
     </div>
   </div>
 
@@ -266,6 +270,18 @@ function switchTab(tab){
   document.getElementById('tab-zfb').classList.toggle('active', tab==='zfb');
   document.getElementById('qr-wx').classList.toggle('hidden', tab!=='wx');
   document.getElementById('qr-zfb').classList.toggle('hidden', tab!=='zfb');
+}
+
+function verifyAndUnlock(){
+  const code = document.getElementById('verify-code').value.trim();
+  const errorEl = document.getElementById('verify-error');
+  if(code !== '2026'){
+    errorEl.style.display = 'block';
+    setTimeout(()=>errorEl.style.display='none', 3000);
+    return;
+  }
+  errorEl.style.display = 'none';
+  unlockResult();
 }
 
 function unlockResult(){
