@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2026年最适合你的行业测试</title>
+  <title>趣味性格测试 · 看看你的性格偏哪一卦</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root{--bg:#0a0e27;--card:#141831;--primary:#4f6ef7;--accent:#00d4ff;--gold:#ffd700;--success:#10b981;--text:#e8eaf6;--text-dim:#8892b0}
@@ -73,11 +73,11 @@
 
   <!-- 开始页 -->
   <div class="card" id="start-screen">
-    <h1>🔮 2026年行业适配测试</h1>
-    <p class="subtitle">基于霍兰德职业兴趣理论 · 20道题 · 深度解析</p>
+    <h1>🔮 趣味性格偏好小测试</h1>
+    <p class="subtitle">20道题 · 看看你的性格偏哪一卦 · 仅供娱乐</p>
     <input type="text" id="nickname" placeholder="输入你的昵称（可选）" maxlength="20">
     <button class="btn btn-primary" onclick="startTest()">开始测试 →</button>
-    <p style="text-align:center;margin-top:16px;font-size:12px;color:var(--text-dim)">完成后支付 ¥9.9 解锁完整结果</p>
+    <p style="text-align:center;margin-top:16px;font-size:11px;color:var(--text-dim);line-height:1.6">⚡ 本测试仅供娱乐参考，不构成任何职业建议<br>觉得好玩？可以打赏作者解锁完整结果 💝</p>
   </div>
 
   <!-- 答题页 -->
@@ -99,10 +99,10 @@
   <!-- 付款页 -->
   <div class="card hidden" id="paywall-screen">
     <div class="paywall">
-      <div class="paywall-icon">🔐</div>
+      <div class="paywall-icon">💝</div>
       <h2>解锁完整结果</h2>
-      <p>AI 分析完成，扫码支付 ¥9.9 即可查看</p>
-      <div class="price">¥9.9 <span>/ 永久查看</span></div>
+      <p>测试完成啦！觉得有趣的话，打赏作者解锁完整结果～</p>
+      <div class="price">¥9.9 <span>/ 自愿打赏</span></div>
       <div class="qr-tabs">
         <button class="qr-tab active" id="tab-wx" onclick="switchTab('wx')">💚 微信支付</button>
         <button class="qr-tab" id="tab-zfb" onclick="switchTab('zfb')">💙 支付宝</button>
@@ -113,7 +113,7 @@
           <img id="img-wx" src="wechat.jpg" alt="微信收款码">
         </div>
         <div class="qr-amount">¥9.9</div>
-        <div class="qr-hint">长按识别二维码 · 转账备注「行业测试」</div>
+        <div class="qr-hint">长按识别二维码 · 随心打赏，多少都行～</div>
       </div>
       <div id="qr-zfb" class="hidden">
         <div class="qr-container">
@@ -121,10 +121,10 @@
           <img id="img-zfb" src="alipay.jpg" alt="支付宝收款码">
         </div>
         <div class="qr-amount">¥9.9</div>
-        <div class="qr-hint">长按识别二维码 · 转账备注「行业测试」</div>
+        <div class="qr-hint">长按识别二维码 · 随心打赏，多少都行～</div>
       </div>
       <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(79,110,247,.2)">
-        <p style="font-size:14px;color:var(--accent);margin-bottom:12px">🔑 付款后请输入验证码解锁结果</p>
+        <p style="font-size:14px;color:var(--accent);margin-bottom:12px">🔑 打赏后请输入验证码解锁结果</p>
         <input type="text" id="verify-code" placeholder="请输入验证码" style="width:100%;padding:14px 16px;border:2px solid rgba(79,110,247,.3);border-radius:10px;background:rgba(10,14,39,.8);color:var(--text);font-size:15px;outline:none;text-align:center;letter-spacing:4px;margin-bottom:12px" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='rgba(79,110,247,.3)'">
         <div id="verify-error" style="color:#ef4444;font-size:13px;margin-bottom:10px;display:none">验证码错误，请确认后重试</div>
         <button class="btn btn-success" onclick="verifyAndUnlock()">🔓 验证并查看结果</button>
@@ -162,7 +162,8 @@
         <div class="top3" id="r-top3"></div>
       </div>
       <button class="btn btn-primary" onclick="location.reload()">🔄 重新测试</button>
-      <div class="share-hint">💡 觉得准？截图分享给朋友，让他们也来测测～</div>
+      <div class="share-hint">💡 觉得好玩？截图分享给朋友，让他们也来测测～</div>
+      <p style="text-align:center;margin-top:12px;font-size:10px;color:var(--text-dim);line-height:1.5">⚡ 本测试基于趣味性格偏好，仅供娱乐参考<br>不构成任何职业规划或人生建议</p>
     </div>
   </div>
 
