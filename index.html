@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026年最适合你的行业测试</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0a0e27;--card:#141831;--primary:#4f6ef7;--accent:#00d4ff;--gold:#ffd700;--success:#10b981;--text:#e8eaf6;--text-dim:#8892b0}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+    body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(79,110,247,.15) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(0,212,255,.1) 0%,transparent 50%);pointer-events:none}
+    .container{max-width:600px;margin:0 auto;padding:20px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+    .card{background:var(--card);border-radius:24px;padding:40px 32px;position:relative;overflow:hidden;border:1px solid rgba(79,110,247,.2);box-shadow:0 25px 50px -12px rgba(0,0,0,.5)}
+    .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent),var(--gold))}
+    h1{font-family:'Noto Serif SC',serif;font-size:26px;text-align:center;margin-bottom:12px;background:linear-gradient(135deg,var(--text),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .subtitle{text-align:center;color:var(--text-dim);font-size:14px;margin-bottom:32px}
+    input{width:100%;padding:16px 20px;border:2px solid rgba(79,110,247,.3);border-radius:12px;background:rgba(10,14,39,.8);color:var(--text);font-size:16px;outline:none;transition:all .3s}
+    input:focus{border-color:var(--primary);box-shadow:0 0 20px rgba(79,110,247,.3)}
+    input::placeholder{color:var(--text-dim)}
+    .btn{width:100%;padding:18px;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;transition:all .3s;margin-top:20px}
+    .btn-primary{background:linear-gradient(135deg,var(--primary),#6366f1);color:#fff}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(79,110,247,.4)}
+    .btn-success{background:linear-gradient(135deg,var(--success),#059669);color:#fff}
+    .btn-success:hover{box-shadow:0 10px 30px rgba(16,185,129,.4)}
+    .progress-bar{height:4px;background:rgba(255,255,255,.1);border-radius:2px;margin-bottom:30px;overflow:hidden}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));transition:width .5s ease;border-radius:2px}
+    .question-num{font-size:13px;color:var(--accent);margin-bottom:8px;letter-spacing:1px}
+    .question-text{font-size:20px;font-weight:600;margin-bottom:28px;line-height:1.5}
+    .options{display:flex;flex-direction:column;gap:12px}
+    .option{padding:18px 20px;background:rgba(10,14,39,.6);border:2px solid rgba(79,110,247,.15);border-radius:12px;cursor:pointer;transition:all .3s;font-size:15px;line-height:1.5}
+    .option:hover{border-color:var(--primary);background:rgba(79,110,247,.1);transform:translateX(4px)}
+    .option.selected{border-color:var(--accent);background:rgba(0,212,255,.15)}
+    .analyzing{text-align:center;padding:40px}
+    .spinner{width:60px;height:60px;border:4px solid rgba(79,110,247,.2);border-top-color:var(--primary);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 24px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .paywall{text-align:center}
+    .paywall-icon{font-size:48px;margin-bottom:16px}
+    .paywall h2{font-family:'Noto Serif SC',serif;font-size:24px;margin-bottom:8px}
+    .paywall p{color:var(--text-dim);margin-bottom:20px;font-size:14px}
+    .price{font-size:36px;font-weight:700;color:var(--gold);margin-bottom:20px}
+    .price span{font-size:16px;color:var(--text-dim)}
+    .qr-tabs{display:flex;gap:12px;margin-bottom:20px}
+    .qr-tab{flex:1;padding:12px;border-radius:10px;border:2px solid rgba(79,110,247,.2);cursor:pointer;transition:all .3s;background:transparent;color:var(--text-dim);font-size:14px;font-weight:500}
+    .qr-tab.active{border-color:var(--success);background:rgba(16,185,129,.15);color:var(--success)}
+    .qr-container{background:#fff;border-radius:16px;padding:16px;margin-bottom:16px;display:inline-block}
+    .qr-container img{display:block;width:200px;height:200px;object-fit:contain}
+    .qr-placeholder{width:200px;height:200px;background:#f5f5f5;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#999;font-size:14px;text-align:center;padding:20px}
+    .qr-amount{font-size:18px;color:#333;font-weight:700;margin-bottom:6px}
+    .qr-hint{font-size:12px;color:#666;margin-bottom:20px}
+    .result-header{text-align:center;margin-bottom:32px}
+    .result-emoji{font-size:64px;margin-bottom:16px}
+    .result-title{font-family:'Noto Serif SC',serif;font-size:28px;margin-bottom:8px}
+    .result-match{display:inline-block;padding:6px 16px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:20px;font-size:14px;font-weight:600;margin-bottom:16px}
+    .result-tagline{color:var(--accent);font-size:16px;font-weight:500}
+    .result-section{margin-bottom:28px}
+    .result-section h3{font-size:13px;color:var(--text-dim);margin-bottom:12px;letter-spacing:1px;text-transform:uppercase}
+    .traits{display:flex;flex-wrap:wrap;gap:8px}
+    .trait{padding:8px 16px;background:rgba(79,110,247,.2);border-radius:20px;font-size:13px;border:1px solid rgba(79,110,247,.3)}
+    .result-desc{line-height:1.8;color:var(--text-dim);font-size:15px}
+    .top3{display:flex;flex-direction:column;gap:10px}
+    .top3-item{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:rgba(10,14,39,.6);border-radius:10px;border:1px solid rgba(79,110,247,.15)}
+    .top3-name{font-weight:500}
+    .top3-match{color:var(--success);font-weight:600}
+    .fade-in{animation:fadeIn .5s ease}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .hidden{display:none!important}
+    .share-hint{margin-top:16px;padding:14px;background:rgba(79,110,247,.1);border-radius:10px;font-size:13px;color:var(--text-dim);text-align:center;line-height:1.6}
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 开始页 -->
+  <div class="card" id="start-screen">
+    <h1>🔮 2026年行业适配测试</h1>
+    <p class="subtitle">基于霍兰德职业兴趣理论 · 20道题 · 深度解析</p>
+    <input type="text" id="nickname" placeholder="输入你的昵称（可选）" maxlength="20">
+    <button class="btn btn-primary" onclick="startTest()">开始测试 →</button>
+    <p style="text-align:center;margin-top:16px;font-size:12px;color:var(--text-dim)">完成后支付 ¥9.9 解锁完整结果</p>
+  </div>
+
+  <!-- 答题页 -->
+  <div class="card hidden" id="question-screen">
+    <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+    <div class="question-num" id="q-num">问题 1/20</div>
+    <div class="question-text" id="q-text"></div>
+    <div class="options" id="options"></div>
+  </div>
+
+  <!-- 分析中 -->
+  <div class="card hidden" id="analyzing-screen">
+    <div class="analyzing">
+      <div class="spinner"></div>
+      <p style="color:var(--text-dim);font-size:16px">AI 正在分析你的职业基因...</p>
+    </div>
+  </div>
+
+  <!-- 付款页 -->
+  <div class="card hidden" id="paywall-screen">
+    <div class="paywall">
+      <div class="paywall-icon">🔐</div>
+      <h2>解锁完整结果</h2>
+      <p>AI 分析完成，扫码支付 ¥9.9 即可查看</p>
+      <div class="price">¥9.9 <span>/ 永久查看</span></div>
+      <div class="qr-tabs">
+        <button class="qr-tab active" id="tab-wx" onclick="switchTab('wx')">💚 微信支付</button>
+        <button class="qr-tab" id="tab-zfb" onclick="switchTab('zfb')">💙 支付宝</button>
+      </div>
+      <div id="qr-wx">
+        <div class="qr-container">
+          <!-- ★ 把你的微信收款码图片链接填到下面 src="" 里 -->
+          <img id="img-wx" src="" alt="微信收款码" onerror="this.parentNode.innerHTML='<div class=qr-placeholder>请联系作者<br>获取收款码</div>'">
+        </div>
+        <div class="qr-amount">¥9.9</div>
+        <div class="qr-hint">长按识别二维码 · 转账备注「行业测试」</div>
+      </div>
+      <div id="qr-zfb" class="hidden">
+        <div class="qr-container">
+          <!-- ★ 把你的支付宝收款码图片链接填到下面 src="" 里 -->
+          <img id="img-zfb" src="" alt="支付宝收款码" onerror="this.parentNode.innerHTML='<div class=qr-placeholder>请联系作者<br>获取收款码</div>'">
+        </div>
+        <div class="qr-amount">¥9.9</div>
+        <div class="qr-hint">长按识别二维码 · 转账备注「行业测试」</div>
+      </div>
+      <button class="btn btn-success" onclick="unlockResult()">✅ 我已付款 · 立即查看结果</button>
+      <p style="font-size:12px;color:var(--text-dim);margin-top:12px">付款后直接点击上方按钮解锁</p>
+    </div>
+  </div>
+
+  <!-- 结果页 -->
+  <div class="card hidden" id="result-screen">
+    <div class="result fade-in">
+      <div class="result-header">
+        <div class="result-emoji" id="r-emoji"></div>
+        <div class="result-title" id="r-title"></div>
+        <div class="result-match">匹配度 <span id="r-match"></span>%</div>
+        <div class="result-tagline" id="r-tagline"></div>
+      </div>
+      <div class="result-section">
+        <h3>你的核心特质</h3>
+        <div class="traits" id="r-traits"></div>
+      </div>
+      <div class="result-section">
+        <h3>深度分析</h3>
+        <p class="result-desc" id="r-desc"></p>
+      </div>
+      <div class="result-section">
+        <h3>行业前景</h3>
+        <p class="result-desc" id="r-outlook"></p>
+      </div>
+      <div class="result-section">
+        <h3>发展建议</h3>
+        <p class="result-desc" id="r-advice"></p>
+      </div>
+      <div class="result-section">
+        <h3>推荐岗位 TOP 3</h3>
+        <div class="top3" id="r-top3"></div>
+      </div>
+      <button class="btn btn-primary" onclick="location.reload()">🔄 重新测试</button>
+      <div class="share-hint">💡 觉得准？截图分享给朋友，让他们也来测测～</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ============================================================
+// 题库（20题，霍兰德六维度）
+// ============================================================
+const questions = [
+  {q:"面对一个从未遇到过的复杂问题，你的第一反应是？",options:["系统拆解，找出底层规律和逻辑链条","头脑风暴，寻找非常规解法","查阅案例，借鉴他人的成功经验","快速行动，在实践中迭代调整"],scores:[{INNOVATION:2,ANALYTICS:2},{INNOVATION:2,CREATIVITY:2},{STRUCTURE:2,EMPATHY:1},{LEADERSHIP:2,INNOVATION:1}]},
+  {q:"当你需要学习一个全新领域时，你更倾向于？",options:["从理论框架入手，理解核心原理","找到该领域的前沿创新，从亮点切入","跟着教程一步步操作，在实践中掌握","找该领域的牛人交流，快速获取洞察"],scores:[{ANALYTICS:2,INNOVATION:1},{CREATIVITY:2,INNOVATION:2},{STRUCTURE:2,EMPATHY:1},{LEADERSHIP:2,EMPATHY:1}]},
+  {q:"你更认同哪种观点？",options:["数据不会说谎，一切决策应以数据为基础","直觉和灵感往往比数据更先一步","经验和常识是决策最可靠的锚点","决策本质是价值判断，取决于你的目标"],scores:[{ANALYTICS:3},{CREATIVITY:3},{STRUCTURE:3},{LEADERSHIP:3}]},
+  {q:"深夜你突然有了一个想法，你最可能？",options:["立即画思维导图或写代码验证可行性","记录灵感碎片，想象它的各种可能","翻来覆去想它是否靠谱，有没有先例","兴奋地想如何把它变成一门生意"],scores:[{INNOVATION:2,ANALYTICS:1},{CREATIVITY:2,INNOVATION:1},{STRUCTURE:2,ANALYTICS:1},{LEADERSHIP:2,CREATIVITY:1}]},
+  {q:"你觉得「聪明」最重要的是？",options:["逻辑清晰，能看透事物本质","想象力丰富，能看到别人看不到的","执行力强，把想法变成现实","共情力强，能理解人心和需求"],scores:[{ANALYTICS:3},{CREATIVITY:3},{STRUCTURE:3,LEADERSHIP:1},{EMPATHY:3}]},
+  {q:"在团队中，你自然扮演的角色是？",options:["技术专家/问题终结者","创意担当/气氛活跃者","组织者/流程把控者","领导者/方向决策者"],scores:[{INNOVATION:2,ANALYTICS:1},{CREATIVITY:2,EMPATHY:1},{STRUCTURE:2,LEADERSHIP:1},{LEADERSHIP:2,INNOVATION:1}]},
+  {q:"你最不能忍受的工作状态是？",options:["重复机械，没有任何挑战性","规矩太多，没有自由发挥空间","朝令夕改，没有稳定预期","孤军奋战，缺乏人际互动"],scores:[{INNOVATION:2,CREATIVITY:1},{CREATIVITY:2,LEADERSHIP:1},{STRUCTURE:2,ANALYTICS:1},{EMPATHY:2,LEADERSHIP:1}]},
+  {q:"开会讨论时，你通常？",options:["静静分析，在关键时刻提出关键问题","天马行空，经常提出意想不到的角度","认真记录，确保讨论不偏离主题","掌控节奏，推动讨论走向决策"],scores:[{ANALYTICS:2,INNOVATION:1},{CREATIVITY:2,INNOVATION:1},{STRUCTURE:2,EMPATHY:1},{LEADERSHIP:2,STRUCTURE:1}]},
+  {q:"你更享受哪种成就感？",options:["攻克了一个别人解决不了的技术难题","创作了一件让人赞叹的作品/内容","建立了一套高效运转的体系/流程","带领团队达成一个了不起的目标"],scores:[{INNOVATION:3},{CREATIVITY:3},{STRUCTURE:3},{LEADERSHIP:3}]},
+  {q:"你的理想工作日是怎样的？",options:["戴上耳机，沉浸式攻克一个技术难关","自由探索，在灵感来时高效输出","按计划推进，每完成一项打个勾","密集沟通，和各种人碰撞火花"],scores:[{INNOVATION:2,ANALYTICS:1},{CREATIVITY:2,INNOVATION:1},{STRUCTURE:2,ANALYTICS:1},{LEADERSHIP:2,EMPATHY:1}]},
+  {q:"如果薪水一样，你最看重什么？",options:["技术前沿感，接触行业最领先的东西","创作自由度，能按自己的方式表达","稳定安全感，有清晰的成长路径","影响力，你的工作能改变很多人"],scores:[{INNOVATION:3},{CREATIVITY:3},{STRUCTURE:3},{LEADERSHIP:2,EMPATHY:1}]},
+  {q:"2025-2026年，你最关注的社会趋势是？",options:["AI大模型如何重塑各行各业","内容形态的演变（短视频/AIGC/虚拟人）","产业升级与供应链重构","人口老龄化带来的健康与养老需求"],scores:[{INNOVATION:2,ANALYTICS:1},{CREATIVITY:2,INNOVATION:1},{STRUCTURE:2,LEADERSHIP:1},{EMPATHY:2,LEADERSHIP:1}]},
+  {q:"你认为成功的本质是？",options:["在某个领域做到极致，成为不可替代的人","创造出独特价值，留下自己的印记","拥有稳定优质的生活和安全感","帮助尽可能多的人，让世界变得更好"],scores:[{INNOVATION:2,ANALYTICS:1},{CREATIVITY:2,LEADERSHIP:1},{STRUCTURE:2,EMPATHY:1},{EMPATHY:2,LEADERSHIP:1}]},
+  {q:"面对行业变化，你的态度是？",options:["积极拥抱新技术，做第一批吃螃蟹的人","用创意回应变化，把危机变成内容素材","稳中求进，确保基本盘再探索新方向","主动出击，在变化中找到商业机会"],scores:[{INNOVATION:3},{CREATIVITY:3},{STRUCTURE:3},{LEADERSHIP:3}]},
+  {q:"如果让你投资一笔钱，你更倾向？",options:["前沿科技公司的早期项目","有潜力的内容/IP创业团队","稳健的产业基金或REITs","解决社会痛点的健康/教育项目"],scores:[{INNOVATION:2,ANALYTICS:1},{CREATIVITY:2,LEADERSHIP:1},{STRUCTURE:2,ANALYTICS:1},{EMPATHY:2,LEADERSHIP:1}]},
+  {q:"你被邀请参加一个行业峰会，你最期待？",options:["听技术大牛讲最新的技术突破","看创意展示，获取灵感启发","学习行业最佳实践和标准化方案","结识行业大佬，拓展人脉资源"],scores:[{INNOVATION:2,ANALYTICS:1},{CREATIVITY:2,INNOVATION:1},{STRUCTURE:2,ANALYTICS:1},{LEADERSHIP:2,EMPATHY:1}]},
+  {q:"周末你更可能？",options:["研究新技术、看论文或写代码","逛展、看演出、创作点什么","整理家务、做计划、复盘本周","和朋友聚会、参加社群活动"],scores:[{INNOVATION:2,ANALYTICS:1},{CREATIVITY:2,EMPATHY:1},{STRUCTURE:2,ANALYTICS:1},{LEADERSHIP:2,EMPATHY:1}]},
+  {q:"你觉得最好的学习方式是？",options:["深度阅读经典和前沿文献","动手实践，做出自己的作品","跟随课程体系，系统化学习","和优秀的人交流，在对话中学习"],scores:[{ANALYTICS:2,INNOVATION:1},{CREATIVITY:2,STRUCTURE:1},{STRUCTURE:2,EMPATHY:1},{LEADERSHIP:2,EMPATHY:1}]},
+  {q:"如果让你写一本书，最可能是？",options:["《XX技术深度解析》","《一个___的自我修养》","《高效___的100个方法》","《改变___的领导者》"],scores:[{INNOVATION:2,ANALYTICS:2},{CREATIVITY:2,EMPATHY:1},{STRUCTURE:2,ANALYTICS:1},{LEADERSHIP:2,INNOVATION:1}]},
+  {q:"最后，选择最像你的一句：",options:["\"我看到的不是问题，是还没被实现的可能\"","\"世界需要更多美和想象力\"","\"有序才能高效，高效才能自由\"","\"连接人心，就能改变世界\""],scores:[{INNOVATION:3},{CREATIVITY:3},{STRUCTURE:3},{EMPATHY:3}]}
+];
+
+// ============================================================
+// 结果库（6种类型）
+// ============================================================
+const RESULTS = {
+  INNOVATION:{emoji:"🚀",name:"科技创新行业",match:92,tagline:"你是天生的技术探索者，适合站在时代前沿",traits:["系统思维","技术敏感","问题驱动","持续学习"],description:"你拥有强烈的技术好奇心和系统性思维，能在复杂问题中找到底层规律。2026年AI、量子计算、新能源等领域正处于爆发期，你的特质将在这里得到最大发挥。",outlook:"AI大模型、芯片半导体、新能源汽车、机器人等赛道在2026年仍是最热门的投资和就业方向，人才缺口巨大，薪资溢价显著。",advice:"建议深耕一个技术方向（如AI工程、嵌入式系统、算法研究），同时培养产品思维，让技术能力转化为商业价值。",top3:[{name:"AI算法工程师",match:94},{name:"产品技术负责人",match:88},{name:"技术创业者",match:85}]},
+  CREATIVITY:{emoji:"🎨",name:"内容创意行业",match:91,tagline:"你的想象力是这个时代最稀缺的资产",traits:["创意思维","审美敏锐","表达欲强","跨界融合"],description:"你天生对美和创意有敏锐感知，能把抽象想法转化为打动人心的内容。AIGC时代，真正有创意的人反而更值钱——AI能生产内容，但无法替代有灵魂的创作者。",outlook:"短视频、品牌内容、游戏、虚拟偶像、AIGC创作等领域在2026年持续高速增长，优质内容创作者的商业价值被重新定义。",advice:"建议建立自己的内容IP，哪怕从小账号开始。同时学习AIGC工具（Midjourney、Sora等），用AI放大你的创意产出效率。",top3:[{name:"内容创作者/博主",match:93},{name:"品牌创意总监",match:89},{name:"游戏/影视制作人",match:86}]},
+  LEADERSHIP:{emoji:"👑",name:"商业管理行业",match:90,tagline:"你有驱动他人、创造结果的天然领导力",traits:["战略眼光","决策果断","影响力强","目标导向"],description:"你善于看清大局、整合资源、推动事情发生。在不确定的商业环境中，这种能力极为稀缺。你不只是执行者，你是那个定义方向的人。",outlook:"2026年企业数字化转型、出海战略、AI落地等方向急需既懂业务又懂管理的复合型人才，管理咨询、创业、职业经理人赛道机会显著。",advice:"建议积累跨行业的项目管理经验，培养数据驱动的决策习惯，同时建立自己的行业人脉网络。考虑MBA或创业作为下一步跳板。",top3:[{name:"创业者/联合创始人",match:92},{name:"管理咨询顾问",match:88},{name:"职业经理人/总监",match:85}]},
+  EMPATHY:{emoji:"💚",name:"健康教育行业",match:89,tagline:"你的共情力是连接人心最强大的力量",traits:["共情力强","以人为本","耐心细致","价值驱动"],description:"你天生关注人的需求和感受，能建立深度信任关系。在老龄化加速、心理健康需求爆发的2026年，这种特质在医疗、教育、心理咨询等领域极为珍贵。",outlook:"大健康、心理咨询、职业教育、养老服务等行业在政策支持和人口结构变化下迎来黄金期，专业人才供不应求。",advice:"建议考取相关专业资质（心理咨询师、营养师、教师资格等），同时学习用内容传播专业知识，打造个人专业品牌。",top3:[{name:"心理咨询师",match:91},{name:"健康管理师",match:87},{name:"教育产品设计师",match:84}]},
+  ANALYTICS:{emoji:"📊",name:"金融数据行业",match:88,tagline:"你用数字看穿世界，用逻辑预判未来",traits:["逻辑严密","数据敏感","风险意识","深度思考"],description:"你有极强的逻辑推理能力和数据直觉，能在海量信息中提炼关键信号。金融、数据分析、战略咨询等领域需要的正是这种「用数字说话」的能力。",outlook:"量化投资、数据科学、风险管理、ESG分析等细分方向在2026年持续升温，具备编程+金融双背景的复合人才薪资溢价超50%。",advice:"建议掌握Python/SQL数据分析技能，考取CFA或数据分析相关认证，同时培养对宏观经济和行业趋势的持续关注习惯。",top3:[{name:"数据科学家",match:90},{name:"量化分析师",match:87},{name:"战略咨询顾问",match:83}]},
+  STRUCTURE:{emoji:"⚙️",name:"运营管理行业",match:87,tagline:"你是让混乱变有序、让系统高效运转的人",traits:["执行力强","流程思维","稳定可靠","细节把控"],description:"你擅长建立秩序、优化流程、确保事情按计划推进。在企业数字化转型浪潮中，懂得用系统化方法解决问题的运营人才极为抢手。",outlook:"电商运营、供应链管理、项目管理、企业数字化等方向在2026年需求旺盛，尤其是能结合AI工具提升效率的复合型运营人才。",advice:"建议考取PMP项目管理认证，学习数据分析和自动化工具（如Python、RPA），让你的执行力插上数字化的翅膀。",top3:[{name:"运营总监",match:89},{name:"供应链管理师",match:85},{name:"项目经理",match:82}]}
+};
+
+// ============================================================
+// 状态
+// ============================================================
+let currentQ = 0;
+let scores = {INNOVATION:0,ANALYTICS:0,CREATIVITY:0,LEADERSHIP:0,EMPATHY:0,STRUCTURE:0};
+let computedResult = null;
+
+// ============================================================
+// 逻辑
+// ============================================================
+function startTest(){
+  showScreen('question-screen');
+  showQuestion();
+}
+
+function showScreen(id){
+  ['start-screen','question-screen','analyzing-screen','paywall-screen','result-screen']
+    .forEach(s=>document.getElementById(s).classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+
+function showQuestion(){
+  const q = questions[currentQ];
+  document.getElementById('progress').style.width = ((currentQ+1)/questions.length*100)+'%';
+  document.getElementById('q-num').textContent = `问题 ${currentQ+1}/${questions.length}`;
+  document.getElementById('q-text').textContent = q.q;
+  document.getElementById('options').innerHTML = q.options.map((opt,i)=>
+    `<div class="option" onclick="selectOption(${i})">${opt}</div>`
+  ).join('');
+}
+
+function selectOption(idx){
+  // 视觉反馈
+  document.querySelectorAll('.option').forEach((el,i)=>{
+    if(i===idx) el.classList.add('selected');
+  });
+  // 累加分数
+  const addScores = questions[currentQ].scores[idx];
+  for(const [k,v] of Object.entries(addScores)) scores[k]=(scores[k]||0)+v;
+  currentQ++;
+  if(currentQ < questions.length){
+    setTimeout(showQuestion, 300);
+  } else {
+    showScreen('analyzing-screen');
+    setTimeout(()=>{
+      computedResult = calcResult();
+      showScreen('paywall-screen');
+    }, 2000);
+  }
+}
+
+function calcResult(){
+  // 找最高维度
+  const sorted = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  const topDim = sorted[0][0];
+  return RESULTS[topDim] || RESULTS.INNOVATION;
+}
+
+function switchTab(tab){
+  document.getElementById('tab-wx').classList.toggle('active', tab==='wx');
+  document.getElementById('tab-zfb').classList.toggle('active', tab==='zfb');
+  document.getElementById('qr-wx').classList.toggle('hidden', tab!=='wx');
+  document.getElementById('qr-zfb').classList.toggle('hidden', tab!=='zfb');
+}
+
+function unlockResult(){
+  if(!computedResult) return;
+  const r = computedResult;
+  document.getElementById('r-emoji').textContent = r.emoji;
+  document.getElementById('r-title').textContent = r.name;
+  document.getElementById('r-match').textContent = r.match;
+  document.getElementById('r-tagline').textContent = r.tagline;
+  document.getElementById('r-traits').innerHTML = r.traits.map(t=>`<span class="trait">${t}</span>`).join('');
+  document.getElementById('r-desc').textContent = r.description;
+  document.getElementById('r-outlook').textContent = r.outlook;
+  document.getElementById('r-advice').textContent = r.advice;
+  document.getElementById('r-top3').innerHTML = r.top3.map(t=>
+    `<div class="top3-item"><span class="top3-name">${t.name}</span><span class="top3-match">${t.match}%</span></div>`
+  ).join('');
+  showScreen('result-screen');
+}
+</script>
+</body>
+</html>
